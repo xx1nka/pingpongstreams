@@ -7,7 +7,7 @@
   --line-soft: rgba(255, 255, 255, 0.07);
   --amber: #e0a84a;
   --amber-soft: rgba(224, 168, 74, 0.34);
-  --scoreboard-scale: 1;
+  --scoreboard-scale: 0.75;
   --control-bg: #111316;
   --control-panel: #1b1f24;
 }
@@ -370,7 +370,7 @@ select {
 
 @media (min-width: 2200px) and (min-height: 1200px) and (min-aspect-ratio: 16 / 10) {
   :root {
-    --scoreboard-scale: 1.333;
+    --scoreboard-scale: 1;
   }
 }
 @media (prefers-reduced-motion: reduce) {
