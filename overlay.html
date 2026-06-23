@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ping Pong Score Overlay</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body class="overlay-page" data-page="overlay">
+    <main class="overlay-stage" aria-label="Оверлей счета настольного тенниса">
+      <section class="scoreboard" aria-live="polite">
+        <article class="side-panel side-panel-left">
+          <div class="side-header">
+            <div class="side-label" id="overlay-left-label">ЛЕВАЯ СТОРОНА</div>
+          </div>
+          <div class="point-score" id="overlay-left-points">0</div>
+          <div class="serve-dots" aria-label="Подача левой стороны">
+            <span class="serve-dot" id="left-serve-1"></span>
+            <span class="serve-dot" id="left-serve-2"></span>
+          </div>
+        </article>
+
+        <article class="center-panel">
+          <div class="match-timer" id="overlay-timer">00:00</div>
+          <div class="match-meta" id="overlay-meta">BO3 • СЕТ 1</div>
+          <div class="sets-score">
+            <span id="overlay-left-sets">0</span>
+            <span class="sets-divider">:</span>
+            <span id="overlay-right-sets">0</span>
+          </div>
+        </article>
+
+        <article class="side-panel side-panel-right">
+          <div class="side-header">
+            <div class="side-label" id="overlay-right-label">ПРАВАЯ СТОРОНА</div>
+          </div>
+          <div class="point-score" id="overlay-right-points">0</div>
+          <div class="serve-dots" aria-label="Подача правой стороны">
+            <span class="serve-dot" id="right-serve-1"></span>
+            <span class="serve-dot" id="right-serve-2"></span>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="./firebase-config.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ping Pong Score Control</title>
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body class="control-page" data-page="control">
+    <main class="control-shell">
+      <header class="control-header">
+        <div>
+          <p class="eyebrow">Панель управления</p>
+          <h1>Счет настольного тенниса</h1>
+        </div>
+        <div class="connection-status" id="connection-status">Подключение...</div>
+      </header>
+
+      <section class="control-panel auth-panel" aria-label="Авторизация Firebase">
+        <h2>Авторизация</h2>
+        <form id="auth-form" class="auth-form">
+          <label>
+            Email
+            <input id="auth-email-input" name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>
+            Password
+            <input id="auth-password-input" name="password" type="password" autocomplete="current-password" required>
+          </label>
+          <div class="button-grid two-cols">
+            <button type="submit" id="auth-sign-in-button">Войти</button>
+            <button type="button" id="auth-sign-out-button">Выйти</button>
+          </div>
+        </form>
+        <div class="match-status" id="auth-status">Не авторизован</div>
+      </section>
+
+      <section class="control-grid" aria-label="Текущее состояние матча">
+        <div class="control-panel match-readout">
+          <div class="readout-row">
+            <span id="control-left-label">ЛЕВАЯ СТОРОНА</span>
+            <strong id="control-left-points">0</strong>
+          </div>
+          <div class="readout-row readout-center">
+            <span id="control-timer">00:00</span>
+            <strong id="control-sets">0 : 0</strong>
+            <span id="control-meta">BO3 • СЕТ 1</span>
+          </div>
+          <div class="readout-row">
+            <span id="control-right-label">ПРАВАЯ СТОРОНА</span>
+            <strong id="control-right-points">0</strong>
+          </div>
+          <div class="match-status" id="match-status">Игра идет</div>
+        </div>
+
+        <div class="control-panel">
+          <h2>Очки</h2>
+          <div class="button-grid two-cols">
+            <button type="button" data-action="point" data-side="left" data-delta="1">+1 левая</button>
+            <button type="button" data-action="point" data-side="right" data-delta="1">+1 правая</button>
+            <button type="button" data-action="point" data-side="left" data-delta="-1">-1 левая</button>
+            <button type="button" data-action="point" data-side="right" data-delta="-1">-1 правая</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h2>Сеты</h2>
+          <div class="button-grid two-cols">
+            <button type="button" data-action="set" data-side="left" data-delta="1">+1 сет левая</button>
+            <button type="button" data-action="set" data-side="right" data-delta="1">+1 сет правая</button>
+            <button type="button" data-action="set" data-side="left" data-delta="-1">-1 сет левая</button>
+            <button type="button" data-action="set" data-side="right" data-delta="-1">-1 сет правая</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h2>Таймер</h2>
+          <div class="button-grid three-cols">
+            <button type="button" data-action="timer-start">Старт таймера</button>
+            <button type="button" data-action="timer-pause">Пауза таймера</button>
+            <button type="button" data-action="timer-reset">Сброс таймера</button>
+          </div>
+        </div>
+
+        <div class="control-panel">
+          <h2>Матч</h2>
+          <label class="format-field">
+            Формат матча
+            <select id="best-of-select">
+              <option value="3">BO3</option>
+              <option value="5">BO5</option>
+            </select>
+          </label>
+          <label class="format-field">
+            Автозавершение сета
+            <input id="auto-advance-checkbox" type="checkbox" checked>
+          </label>
+          <div class="button-grid two-cols">
+            <button type="button" data-action="new-set">Новый сет</button>
+            <button type="button" data-action="reset-match" class="danger-button">Сброс матча</button>
+            <button type="button" data-action="toggle-first-server">Поменять начальную подачу</button>
+            <button type="button" data-action="swap-sides">Поменять стороны</button>
+          </div>
+          <button type="button" data-action="undo" class="wide-button">Отменить последнее действие</button>
+        </div>
+
+        <form class="control-panel labels-form" id="labels-form">
+          <h2>Названия сторон</h2>
+          <label>
+            Левая сторона
+            <input id="left-label-input" name="leftLabel" type="text" maxlength="24" autocomplete="off">
+          </label>
+          <label>
+            Правая сторона
+            <input id="right-label-input" name="rightLabel" type="text" maxlength="24" autocomplete="off">
+          </label>
+          <button type="submit" class="wide-button">Сохранить названия</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="./firebase-config.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
